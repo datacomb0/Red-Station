@@ -1,7 +1,7 @@
 # REDLINE — Morse Field Station
 
 An interactive Morse code translator designed as an 80s field-radio console. REDLINE combines live text/Morse conversion, an animated telegraph key, audio playback, and a dark-red ambient interface.
-
+Live domain: https://red-station.netlify.app/
 ![REDLINE Morse Field Station](https://img.shields.io/badge/REDLINE-Morse%20Field%20Station-f04a35?style=for-the-badge)
 
 ## Features
