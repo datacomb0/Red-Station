@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#180304" />
+    <title>REDLINE — Morse Station</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <main class="station-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Redline home"><span class="brand-mark">R</span><span>REDLINE</span></a>
+        <p class="eyebrow">MORSE FIELD STATION <span>•</span> EST. 1984</p>
+        <div class="status"><i></i><span id="statusText">SYSTEM ARMED</span></div>
+      </header>
+
+      <section class="hero" id="top">
+        <div>
+          <p class="kicker">SIGNAL / TRANSLATION TERMINAL</p>
+          <h1>Make every<br /><em>signal</em> count.</h1>
+          <p class="hero-copy">A tactile Morse workspace built like an old field radio. Write, listen, send, and learn in real time.</p>
+        </div>
+        <div class="hero-dial" aria-label="Signal status">
+          <div class="dial-core"><span>RX</span><strong id="meterValue">00</strong><small>WPM</small></div>
+          <svg viewBox="0 0 180 180" aria-hidden="true"><circle cx="90" cy="90" r="75"/><circle class="active-arc" cx="90" cy="90" r="75"/></svg>
+          <span class="dial-label">SIGNAL LEVEL</span>
+        </div>
+      </section>
+
+      <section class="console-grid" aria-label="Morse translator">
+        <article class="key-panel desk-key">
+          <div class="section-label"><span>03 /</span> MANUAL KEY</div>
+          <h2>Put your hand<br />on the wire.</h2>
+          <p>Tap for a dot. Hold for a dash. The key decodes each transmission after a short pause.</p>
+          <div class="key-wrap">
+            <button id="morseKey" class="morse-key" aria-label="Morse telegraph key. Hold for a dash, tap for a dot.">
+              <span class="key-knob"></span><span class="key-lever"></span><span class="key-base"></span>
+            </button>
+            <p class="key-hint"><kbd>SHIFT</kbd> also keys the transmitter</p>
+          </div>
+          <div class="key-output"><span>KEY BUFFER</span><strong id="keyBuffer">—</strong><small id="decodedKey">READY FOR TRANSMISSION</small></div>
+        </article>
+        <article class="panel editor-panel">
+          <div class="panel-head"><div><span class="panel-number" id="leftNumber">01 /</span><h2 id="leftTitle">Plain text</h2></div><span id="charCount">000 CHARS</span></div>
+          <textarea id="textInput" maxlength="800" placeholder="TYPE A MESSAGE…" spellcheck="false"></textarea>
+          <div class="panel-actions"><button class="text-button" id="clearText">CLEAR</button><button class="text-button" id="copyText">COPY</button><button class="text-button" id="swapDirection">SWAP ⇄</button><button class="send-button" id="sendText"><span>TRANSMIT</span><b>↗</b></button></div>
+        </article>
+
+        <article class="panel editor-panel morse-panel">
+          <div class="panel-head"><div><span class="panel-number" id="rightNumber">02 /</span><h2 id="rightTitle">Morse code</h2></div><span id="morseCount">000 SIGNS</span></div>
+          <textarea id="morseInput" maxlength="2400" placeholder="… — …   /   … — …" spellcheck="false"></textarea>
+          <div class="panel-actions"><button class="text-button" id="clearMorse">CLEAR</button><button class="text-button" id="copyMorse">COPY</button><button class="send-button secondary" id="playMorse"><span>PLAYBACK</span><b>▶</b></button></div>
+        </article>
+      </section>
+
+      <section class="signal-strip" aria-label="Signal visualizer">
+        <div class="strip-title"><span class="live-dot"></span><span>LIVE SIGNAL</span><small id="visualStatus">AWAITING INPUT</small></div>
+        <div class="signal-window" id="signalWindow"><span class="signal-empty">THE CHANNEL IS QUIET</span></div>
+        <div class="signal-readout"><span id="readoutText">READY</span><span id="progressText">00:00</span></div>
+      </section>
+
+      <section class="operator-grid">
+        <aside class="control-panel">
+          <div class="section-label"><span>04 /</span> TUNING</div>
+          <div class="control"><div><label for="wpm">SPEED</label><output id="wpmOut">18 <small>WPM</small></output></div><input id="wpm" type="range" min="8" max="35" value="18" /></div>
+          <div class="control"><div><label for="frequency">TONE</label><output id="freqOut">650 <small>HZ</small></output></div><input id="frequency" type="range" min="400" max="1000" step="10" value="650" /></div>
+          <div class="control toggle-row"><div><label>SIDETONE</label><small>Hear the key as you press it</small></div><button id="sideTone" class="toggle active" aria-pressed="true"><span></span></button></div>
+          <div class="legend"><span><i class="dot-example"></i> DOT / 1 UNIT</span><span><i class="dash-example"></i> DASH / 3 UNITS</span></div>
+        </aside>
+      </section>
+
+      <section class="reference">
+        <div class="reference-heading"><p class="kicker">QUICK REFERENCE</p><h2>Know the language.</h2></div>
+        <div id="referenceGrid" class="reference-grid"></div>
+      </section>
+
+      <footer><span>REDLINE RADIO WORKS</span><span>FREQUENCY 7.021 MHZ</span><span id="clock">--:--:-- UTC</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status">COPIED TO CLIPBOARD</div>
+    <script src="app.js"></script>
+  </body>
+</html>
